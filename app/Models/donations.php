@@ -10,7 +10,7 @@ class donations extends Model {
 
     use HasFactory ;
     protected $table ='list_donation';
-    protected $fillable =[];
+    protected $fillable =[''];
 
     public function user(){
         return $this->belongsTo('App\Models\User');

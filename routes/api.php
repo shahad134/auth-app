@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ListOfDonation;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,21 +14,26 @@ use App\Http\Controllers\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
     Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::post('register', [AuthController::class, 'register']);
+    Route::post('register', [AuthController::class, 'register']); 
     Route::group([
         'middleware' => 'auth:api'
     ], function() {
-        Route::post('donations',[App\Http\Controllers\ListOfDonation::class,'store']);
+        //donation =route
+        Route::post('donations',[ListOfDonation::class,'apistore']);
+        Route::get('/receive_donation',[ListOfDonation::class,'receive_donation']);
+
         
-        Route::get('logout', 'Auth\AuthController@logout');
-        Route::get('user', 'Auth\AuthController@user');
+        Route::get('/logout', [AuthController::class,'logout']);
+        // Route::get('/user', 'Auth\AuthController@user');
+        Route::get('/user', [AuthController::class, 'user']);
     });
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });

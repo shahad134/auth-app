@@ -25,17 +25,26 @@ class ListOfDonation extends Controller
     }
       /**
      * Store a newly created resource in storage.
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
+    {
+            
       
+        dd($request->all());
+        $user = Auth::user();
+        $user->donations()->create($request->all());
+        return redirect()->route('donations.create');
+    }
+    public function apistore(Request $request)
+    { 
     $donations =new donations();
     $donations->user_id=Auth::user()->id;
-    $donations->furniture=$request->{'furniture'};
-    $donations->clothes=$request->{'clothes'};
+    $donations->furniture=$request->{'donations.furniture'};
+    $donations->clothes=$request->{'donations.clothes'};
+   
     $donations->save();
     if (auth()->user()->donations())
         return response()->json([
@@ -48,9 +57,13 @@ class ListOfDonation extends Controller
             'message' => 'Data could not be added'
         ], 500);
     }
-    public function user(Request $request)
+    public function receive_donation()
     {
-        return response()->json($request->user());
+        return Auth::user()->donations()->first();
     }
+    // public function user(Request $request)
+    // {
+    //     return response()->json($request->user());
+    // }
 
 }
