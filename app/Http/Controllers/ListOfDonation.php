@@ -40,8 +40,9 @@ class ListOfDonation extends Controller
     }
     public function apistore(Request $request)
     { 
+        $user =Auth::user()->id;
     $donations =new donations();
-    $donations->user_id=Auth::user()->id;
+    $donations->id=$user;
     $donations->furniture=$request->{'donations.furniture'};
     $donations->clothes=$request->{'donations.clothes'};
    
