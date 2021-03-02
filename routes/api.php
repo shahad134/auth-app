@@ -26,8 +26,6 @@ Route::group([
         //donation =route
         Route::post('donations',[ListOfDonation::class,'apistore']);
         Route::get('/receive_donation',[ListOfDonation::class,'receive_donation']);
-
-        
         Route::get('/logout', [AuthController::class,'logout']);
         // Route::get('/user', 'Auth\AuthController@user');
         Route::get('/user', [AuthController::class, 'user']);

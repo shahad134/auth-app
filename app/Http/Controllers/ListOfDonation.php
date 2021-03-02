@@ -11,7 +11,7 @@ class ListOfDonation extends Controller
 {
     //
     public function index(){
-        //
+    //sssssssss
     }
  /**
      * Show the form for creating a new resource.
@@ -33,7 +33,7 @@ class ListOfDonation extends Controller
     {
             
       
-        dd($request->all());
+        // dd($request->all());
         $user = Auth::user();
         $user->donations()->create($request->all());
         return redirect()->route('donations.create');
@@ -41,21 +41,21 @@ class ListOfDonation extends Controller
     public function apistore(Request $request)
     { 
         $user =Auth::user()->id;
-    $donations =new donations();
-    $donations->id=$user;
-    $donations->furniture=$request->{'donations.furniture'};
-    $donations->clothes=$request->{'donations.clothes'};
-   
-    $donations->save();
-    if (auth()->user()->donations())
-        return response()->json([
-        'success' => true,
-        'data' => $donations->toArray()
-    ]);
-    else
-        return response()->json([
-            'success' => false,
-            'message' => 'Data could not be added'
+        $donations =new donations();
+        $donations->id=$user;
+        $donations->furniture=$request->{'furniture'};
+        $donations->clothes=$request->{'clothes'};
+    
+        $donations->save();
+        if (auth()->user()->donations())
+            return response()->json([
+            'success' => true,
+            'data' => $donations->toArray()
+        ]);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => 'Data could not be added'
         ], 500);
     }
     public function receive_donation()

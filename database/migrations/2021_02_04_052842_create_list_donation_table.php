@@ -17,7 +17,6 @@ class CreateListDonationTable extends Migration
             $table ->string('furniture');
             $table ->string('clothes');
             $table->timestamps();
-           
         });
     }
 
