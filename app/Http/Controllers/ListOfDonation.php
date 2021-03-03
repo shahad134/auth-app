@@ -42,9 +42,9 @@ class ListOfDonation extends Controller
     { 
         $user =Auth::user()->id;
         $donations =new donations();
-        $donations->id=$user;
-        $donations->furniture=$request->{'furniture'};
-        $donations->clothes=$request->{'clothes'};
+        $donations->user_id=$user;
+        $donations->furniture=$request->{'donations_info.furniture'};
+        $donations->clothes=$request->{'donations_info.clothes'};
     
         $donations->save();
         if (auth()->user()->donations())
@@ -60,7 +60,8 @@ class ListOfDonation extends Controller
     }
     public function receive_donation()
     {
-        return Auth::user()->donations()->first();
+        // return Auth::user()->donations();
+        return Auth::user()->donations()->latest('id')->first();
     }
     // public function user(Request $request)
     // {
