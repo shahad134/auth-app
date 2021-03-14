@@ -14,7 +14,7 @@ class ListOfDonation extends Controller
     //sssssssss
     }
  /**
-     * Show the form for creating a new resource.
+  *  * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -61,8 +61,12 @@ class ListOfDonation extends Controller
     public function receive_donation()
     {
         // return Auth::user()->donations();
-        return Auth::user()->donations()->latest('id')->first();
-    }
+        // return Auth::user()->donations()->latest('id')->get();
+       return User::all('id', '!=', auth()->id())->donations()->latest()->get();
+      //  return User::auth()->donations()->latest('id')->get();
+    // return   $users = User::where('id', '!=', auth()->donations()->latest('id'))->get();
+
+    } 
     // public function user(Request $request)
     // {
     //     return response()->json($request->user());

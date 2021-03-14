@@ -14,7 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+       // 'guard' => 'web',
+       'guard' => 'customer',
         'passwords' => 'users',
     ],
 
@@ -45,7 +46,18 @@ return [
             'driver' => 'passport',
             'provider' => 'users',
             'hash' => false,
+        ], 
+        // multi auth
+        'staff' => [
+            'driver' => 'passport',
+            'provider' => 'staff',
         ],
+    
+        'customer' => [
+            'driver' => 'passport',
+            'provider' => 'customer',
+        ],
+    
     ],
 
     /*
@@ -71,6 +83,15 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        'customer' => [
+            'driver' => 'eloquent',
+            'model' => App\customer::class,
+        ],
+    
+        'staff' => [
+            'driver' => 'eloquent',
+            'model' => App\staff::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

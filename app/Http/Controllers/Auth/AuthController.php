@@ -9,8 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
-{
-    public function login(Request $request) {
+{ public function login(Request $request) {
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required| string',
@@ -28,9 +27,16 @@ class AuthController extends Controller
         if ($request->remember_me)
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
+        $rot='';
+        if ( auth()->user()->is_admin !=1){
+            $rot='/admin';
+        }else {
+            $rot='/donation';
+        }
         return response()->json([
             'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
+            'token_type' => 'Bearer', 
+           'is_admin'=>$rot,
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
             )->toDateTimeString()
@@ -47,6 +53,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->is_admin = 0 ;
         $user->save();
         return response()->json([
             'message' => 'Successfully created user!'

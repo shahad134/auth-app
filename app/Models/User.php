@@ -17,10 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-       
+        // 'name',
+        // 'email',
+        // 'password',
+        'name', 'email', 'password', 'is_admin'
     ];
 
     /**
@@ -41,6 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    // shahad
+//     const ADMIN_TYPE = 'admin';
+// const DEFAULT_TYPE = 'default';
+// public function isAdmin()    {        
+//     return $this->type === self::ADMIN_TYPE;    
+// }
     public function donations(){
         return $this->hasMany('App\Models\donations');
     }

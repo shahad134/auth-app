@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ListOfDonation;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,7 +15,31 @@ use App\Http\Controllers\ListOfDonation;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// Route::group(['prefix' => 'v1'],function(){
 
+//     //general unauthenticated routes here 
+
+//     Route::group(['prefix' => 'customer'],function(){
+
+//         Route::post('sign-up','CustomerController@signUp');
+//     //unauthenticated routes for customers here               
+
+//     Route::group( ['middleware' => ['auth:customer','scope:customer'] ],function(){
+//            // authenticated customer routes here 
+//            Route::post('dashboard','CustomerController@dashboard');
+//         });
+//     });
+    
+//     Route::group(['prefix' => 'staff'],function(){
+
+//     Route::post('sign-up','StaffController@signUp');
+//     //unauthenticated routes for customers here               
+
+//     Route::group( ['middleware' => ['auth:staff','scope:staff'] ],function(){
+//            // authenticated staff routes here 
+//            Route::post('dashboard','StaffController@dashboard');
+//         });
+//     });
 Route::group([
     'prefix' => 'auth'
 ], function () {

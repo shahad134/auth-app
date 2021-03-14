@@ -24,7 +24,17 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Passport::routes();
+        Passport::routes(); // Multi-auth
+        // Passport::tokensCan([
+        //     'staff' => 'Access Admin Backend',
+        //     'customer' => 'Access Customer App',
+        //     'role' => 'Description for role',
+        // ]);
+    
+        // Passport::setDefaultScope([
+        //     'customer',
+        // ]);
+    
         //
     }
 }
