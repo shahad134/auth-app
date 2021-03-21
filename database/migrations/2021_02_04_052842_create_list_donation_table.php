@@ -18,9 +18,20 @@ class CreateListDonationTable extends Migration
             $table->foreign('user_id')
               ->references('id')
                 ->on('users');
-
-            $table ->string('furniture');
+            $table ->string('furniture')->nullable();
             $table ->string('clothes')->nullable();
+            $table ->string('dishes')->nullable();
+            $table ->string('electrical_tools')->nullable();
+            $table ->string('baby_things')->nullable();
+            $table ->string('luxuries')->nullable();
+            $table ->string('accessories_and_mobiles')->nullable();
+            $table ->string('medical_devices')->nullable();
+            $table ->string('miscellaneous')->nullable();
+           // $table ->datetime('birth_date');
+             
+            
+
+
             $table->timestamps();
         });
     }

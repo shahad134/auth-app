@@ -53,7 +53,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->is_admin = 0 ;
+        $user->is_admin = 1;
         $user->save();
         return response()->json([
             'message' => 'Successfully created user!'
