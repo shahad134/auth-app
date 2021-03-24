@@ -31,15 +31,13 @@ class ListOfDonation extends Controller
      */
     public function store(Request $request)
     {
-            
-      
         // dd($request->all());
         $user = Auth::user();
         $user->donations()->create($request->all());
         return redirect()->route('donations.create');
     }
     public function apistore(Request $request)
-    { 
+    {   
         $user =Auth::user()->id;
         $donations =new donations();
         $donations->user_id=$user; 

@@ -15,9 +15,7 @@ class CreateListDonationTable extends Migration
         Schema::create('list_donation', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
-              ->references('id')
-                ->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table ->string('furniture')->nullable();
             $table ->string('clothes')->nullable();
             $table ->string('dishes')->nullable();
