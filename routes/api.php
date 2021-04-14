@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controlles\ListOfDonation;
-//use App\Http\Controlles\infoconnect;
+use App\Http\Controlles\infoconnect;
 use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ Route::group([
         //infoconnect
         //C:\Users\shahd\Desktop\tharwat-ionic\auth-app\app\Http\Controllers\infoconnect.php
        // Route::post('info_connect',[infoconnect::class,'apistore']);
-        Route::post('infoconnect', [App\Http\Controllers\infoconnects::class,'store']);
+        Route::post('infoconnect', [App\Http\Controllers\infoconnects::class,'apistore']);
 
 
         Route::get('/receive_donation',[ListOfDonation::class,'receive_donation']);
